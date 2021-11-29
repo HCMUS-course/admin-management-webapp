@@ -6,9 +6,9 @@ const productPerPage = 4
 
 
 exports.list=async function(req,res){
-    const page = req.params.pageArray
+    const page = req.params.page
     let pageCount=0
-    const products=await productServies.list(page)
+    const products=await productServies.list(Number(page))
     const NumberOfProduct= await productServies.getNumberOfProduct()  
     pageCount=NumberOfProduct/productPerPage;
     const pageArray=pagination(Number(page),pageCount)
