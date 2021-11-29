@@ -1,8 +1,18 @@
 const productServies=require('./productServices')
+const {pagination}=require('../helper/pagination-helper')
 const {ObjectId}=require('mongodb')
+
+const productPerPage = 4
+
+
 exports.list=async function(req,res){
-    const products=await productServies.list()
-    res.render('product/productList',{products})
+    const page = req.params.pageArray
+    let pageCount=0
+    const products=await productServies.list(page)
+    const NumberOfProduct= await productServies.getNumberOfProduct()  
+    pageCount=NumberOfProduct/productPerPage;
+    const pageArray=pagination(Number(page),pageCount)
+    res.render('product/productList',{products,pageArray:pageArray})
   }
 
   exports.listProductDetail=async function(req,res){
