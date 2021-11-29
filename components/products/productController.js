@@ -6,9 +6,7 @@ exports.list=async function(req,res){
   }
 
   exports.listProductDetail=async function(req,res){
-    var id = req.params.id,
-    path = req.params[0] ? req.params[0] : 'index.html';
-    res.sendFile(path, {root: './public'});
+    var id = req.params.id
     const productDetail=await productServies.listProductDetail(id)
     res.render('product/productDetail',{productDetail})
 
