@@ -9,9 +9,11 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productRouter = require('./components/products/index');
-
+var addRouter = require('./routes/productAdd')
 var app = express();
 
+
+const bodyparser = require('body-parser');
 // view engine setup
 // const pagination=require('./components/helper/pagination-helper')
 app.set('views', path.join(__dirname, 'views'));
@@ -24,13 +26,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/productAdd/editProduct", express.static(path.join(__dirname, "public")));
 
+app.use(bodyparser.urlencoded({
+    extended :true
+}));
+app.use(bodyparser.json());
 
-
-
-
+app.use("/productAdd",addRouter);
 app.use('/', indexRouter);
-app.use("/products",productRouter)
+app.use("/products",productRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
