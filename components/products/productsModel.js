@@ -29,7 +29,8 @@ const productSchema=mongoose.Schema({
         battery : String,
         powerAdapter : String,
         manufacturer :String,
-        releaseDate : String
+        releaseDate : String,
+        thumbnail:String,
     },
     buyCounts : Number,
     viewCounts : Number,
