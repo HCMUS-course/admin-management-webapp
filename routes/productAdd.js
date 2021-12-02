@@ -15,20 +15,21 @@ router.post('/',(req,res)=>{
   
   insertProduct(req, res);
   
-  
-  
 });
 
 router.post('/editProduct/:id',(req,res) =>{
-  console.log("hi");
-  updateRecord(req, res);
+  
+  a = updateRecord(req, res);
+  console.log(a);
+  
 });
 function updateRecord(req, res) {
   Product.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
-      if (!err) { console.log("Successful") }
+      if (!err) { 
+        res.redirect("/products/id/" + req.body._id);
+      }
       else {
-          
-              console.log('Error during record update : ' + err);
+        console.log('Error during record update : ' + err);
       }
   });
 }
@@ -69,7 +70,7 @@ function insertProduct(req,res){
 
     newProduct.save((err,doc)=>{
       if(!err)
-      res.redirect('productAdd/list');
+      res.redirect('/products/1');
       
       else{
         console.log('Error during record inserted: '+ err);
@@ -101,7 +102,7 @@ router.get('/delete/:id',(req,res)=>{
   Product.findByIdAndRemove(req.params.id,(err,doc)=>{
     
     if(!err)
-       console.log("Successfully");
+        res.redirect('/products/1');
     
     else{
       console.log('Error during record inserted: '+ err);
