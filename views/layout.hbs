@@ -179,7 +179,7 @@
                         <li id="removable">
                             <a class="has-arrow" href="#" aria-expanded="false"><i class="icon nalika-new-file icon-wrap"></i> <span class="mini-click-non">Pages</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Login" href="login.html"><span class="mini-sub-pro">Login</span></a></li>
+                                <li><a title="Login" href="/login"><span class="mini-sub-pro">Login</span></a></li>
                                 <li><a title="Create Account" href="/createAccount"><span class="mini-sub-pro">Create Account</span></a></li>
                                 <li><a title="Lock" href="lock.html"><span class="mini-sub-pro">Lock</span></a></li>
                                 <li><a title="Password Recovery" href="password-recovery.html"><span class="mini-sub-pro">Password Recovery</span></a></li>
@@ -312,8 +312,8 @@
                         <li id="removable">
                             <a class="has-arrow" href="#" aria-expanded="false"><i class="icon nalika-new-file icon-wrap"></i> <span class="mini-click-non">Pages</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Login" href="login.html"><span class="mini-sub-pro">Login</span></a></li>
-                                <li><a title="Register" href="register.html"><span class="mini-sub-pro">Register</span></a></li>
+                                <li><a title="Login" href="/login"><span class="mini-sub-pro">Login</span></a></li>
+                                <li><a title="Register" href="/createAccount"><span class="mini-sub-pro">Create Account</span></a></li>
                                 <li><a title="Lock" href="lock.html"><span class="mini-sub-pro">Lock</span></a></li>
                                 <li><a title="Password Recovery" href="password-recovery.html"><span class="mini-sub-pro">Password Recovery</span></a></li>
                             </ul>
@@ -489,19 +489,22 @@
 															<i class="icon nalika-down-arrow nalika-angle-dw"></i>
 														</a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="/createAccount"><span class="icon nalika-home author-log-ic"></span>Create Account</a>
-                                                        </li>
-                                                        <li><a href="admin-profile.html"><span class="icon nalika-user author-log-ic"></span> My Profile</a>
-                                                        </li>
-                                                        <li><a href="lock.html"><span class="icon nalika-diamond author-log-ic"></span> Lock</a>
+                                                        
+                                                          <li><a href="/createAccount"><span class="icon nalika-home author-log-ic"></span>Create Account</a></li>
+                                                          
+                                                           <li><a href="/adminProfile/{{user._id}}"><span class="icon nalika-user author-log-ic"></span>My Profile</a></li>
+                                                       
+                                                        {{!<li><a href="lock.html"><span class="icon nalika-diamond author-log-ic"></span> Lock</a>
                                                         </li>
                                                         <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
-                                                        </li>
+                                                        </li>}}
                                                         <li>
                                                             {{#if user}}
-                                                            <a href="/logout"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
+                                                          
+                                                            
+                                                            <li><a href="/logout"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a></li>
                                                             {{else}}
-                                                            <a href="/login"><span class="icon nalika-unlocked author-log-ic"></span> Log In</a>
+                                                            <li><a href="/login"><span class="icon nalika-unlocked author-log-ic"></span> Log In</a></li>
                                                             {{/if}}
                                                         </li>
                                                     </ul>

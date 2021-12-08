@@ -22,7 +22,7 @@ passport.use(new LocalStrategy(
   }
 ));
 passport.serializeUser(function(user, done) {
-    done(null, {username:user.username,role:user.role,email:user.email});
+    done(null, {username:user.username,role:user.role,email:user.email, _id : user._id});
   });
   
   passport.deserializeUser(async function(user, done) {

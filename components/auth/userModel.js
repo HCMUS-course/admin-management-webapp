@@ -7,7 +7,10 @@ const UserSchema=mongoose.Schema({
     isLock:Boolean,
     username:String,
     password:String,
+    fullname : String,
     email:String,
+    phone : String,
+    address : String,
     verify_token:String,
 })
 module.exports=User = mongoose.model('user', UserSchema)

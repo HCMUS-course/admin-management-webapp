@@ -12,9 +12,10 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productRouter = require('./components/product/index');
 const authRouter=require("./components/auth/index")
-const addRouter = require('./routes/productAdd')
+const addRouter = require('./components/product/productAdd')
 const loggedInAdminGuard=require("./middlewares/loginAdminGuard")
-var createAcc = require('./components/auth/createAccount')
+const createAcc = require('./components/auth/createAccount')
+const adminProfile = require('./components/auth/adminProfile')
 const app = express();
 
 
@@ -32,6 +33,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 console.log( process.env.SESSION_SECRET);
 app.use(session({ secret: process.env.SESSION_SECRET,
@@ -54,9 +56,11 @@ app.use('/',authRouter)
 app.use('/',loggedInAdminGuard, indexRouter);
 
 app.use("/productAdd/editProduct", express.static(path.join(__dirname, "public")));
+app.use("/adminProfile", express.static(path.join(__dirname, "public")));
 app.use("/productAdd",loggedInAdminGuard,addRouter);
 app.use("/products",loggedInAdminGuard,productRouter);
 app.use('/createAccount',createAcc);
+app.use('/adminProfile',adminProfile);
 // app.use('/users',loggedInAdminGuard, usersRouter);
 
 // catch 404 and forward to error handler
