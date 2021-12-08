@@ -14,6 +14,7 @@ const productRouter = require('./components/product/index');
 const authRouter=require("./components/auth/index")
 const addRouter = require('./routes/productAdd')
 const loggedInAdminGuard=require("./middlewares/loginAdminGuard")
+var createAcc = require('./components/user/createAccount')
 const app = express();
 
 
@@ -55,6 +56,7 @@ app.use('/',loggedInAdminGuard, indexRouter);
 app.use("/productAdd/editProduct", express.static(path.join(__dirname, "public")));
 app.use("/productAdd",loggedInAdminGuard,addRouter);
 app.use("/products",loggedInAdminGuard,productRouter);
+app.use('/createAccount',createAcc);
 // app.use('/users',loggedInAdminGuard, usersRouter);
 
 // catch 404 and forward to error handler
