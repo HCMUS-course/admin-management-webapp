@@ -12,13 +12,13 @@ exports.list=async function(req,res){
     const NumberOfProduct= await productServices.getNumberOfProduct()  
     pageCount=NumberOfProduct/productPerPage;
     const pageArray=pagination(Number(page),pageCount)
-    res.render('product/productList',{products,pageArray:pageArray})
+    res.render('productList',{products,pageArray:pageArray})
   }
 
   exports.listProductDetail=async function(req,res){
     var id = req.params.id
     const productDetail=await productServices.listProductDetail(id)
-    res.render('product/productDetail',{productDetail})
+    res.render('productDetail',{productDetail})
 
     
     

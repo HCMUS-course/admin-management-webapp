@@ -6,7 +6,7 @@ const Product = mongoose.model('product');
 
 router.get('/' , function(req, res, next) {
   
-  res.render('product/productAdd',{
+  res.render('productAdd',{
       viewTitle:"Add Product"
   });
   
