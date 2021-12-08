@@ -87,7 +87,7 @@ router.get('/editProduct/:id',(req,res)=>{
       
       Product.findById(req.params.id,(err,doc)=>{
               
-              res.render('product/productAdd',{
+              res.render('productAdd',{
                 viewTitle:"Update Product",
                 product : doc
               });

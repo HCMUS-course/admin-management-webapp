@@ -11,3 +11,8 @@ module.exports.validPassword=async(password,user)=>{
     var a = await bcrypt.compare(password,user.password);
     return a
 }
+
+module.exports.findByID=(id)=>{
+  
+    return User.findOne({_id:id}).lean();
+}

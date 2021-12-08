@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('user');
 router.get('/', function(req, res, next) {
-  res.render('./admin/createAccount');
+  res.render('createAccount');
 });
 router.post('/',(req,res)=>{
   
@@ -25,7 +25,7 @@ async function  createUser(req,res){
       newUser.fullname = req.body.fullname;
       newUser.email = req.body.email;
       newUser.phone = req.body.phoneNumber;
-      newUser.address = req.body.addess;
+      newUser.address = req.body.address;
       
       newUser.save((err,doc)=>{
         if(!err)
