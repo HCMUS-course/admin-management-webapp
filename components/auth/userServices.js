@@ -1,6 +1,22 @@
 const User=require("./userModel")
 var bcrypt = require('bcrypt');
 
+module.exports.getAllUser=(pageNum,ItemPerPage)=>{
+    ItemPerPage = 4; // số lượng sản phẩm xuất hiện trên 1 page
+    const page = pageNum || 1; 
+  
+     return User
+      .find()
+      .skip((ItemPerPage * page) - ItemPerPage) 
+      .limit(ItemPerPage)
+      .lean()
+      .exec()
+}
+
+module.exports.countTotalOfUser=()=>{
+    return User.countDocuments();
+}
+
 module.exports.findByUsername=(username)=>{
     return User.findOne({username:username}).lean() 
 }

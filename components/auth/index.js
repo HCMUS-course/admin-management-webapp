@@ -2,6 +2,7 @@ const express=require('express')
 const router=express.Router()
 const passport=require('../../passport/index')
 const authController=require("./authController")
+const adminController=require("./adminController")
 
 
 router.get('/login',authController.login)
@@ -12,5 +13,9 @@ router.post('/login',
                                     failureRedirect: '/login?failed-authentication',
                                     })
 );
-router
+
+router.use('/:route', express.static('public'));
+router.get("/:page",adminController.listAdmin)
+
+
 module.exports=router

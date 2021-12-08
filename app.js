@@ -16,6 +16,7 @@ const addRouter = require('./components/product/productAdd')
 const loggedInAdminGuard=require("./middlewares/loginAdminGuard")
 const createAcc = require('./components/auth/createAccount')
 const adminProfile = require('./components/auth/adminProfile')
+// const adminListRouter=require('./components/auth/adminController')
 const app = express();
 
 
@@ -53,7 +54,7 @@ app.use(bodyparser.json());
 
 app.use('/',authRouter)
 app.use('/',loggedInAdminGuard, indexRouter);
-
+app.use('/admin',authRouter)
 app.use("/productAdd/editProduct", express.static(path.join(__dirname, "public")));
 app.use("/adminProfile", express.static(path.join(__dirname, "public")));
 app.use("/productAdd",loggedInAdminGuard,addRouter);
