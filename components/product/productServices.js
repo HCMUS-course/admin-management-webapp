@@ -7,21 +7,11 @@ exports.list=(pageNum)=>{
   
      return Product
       .find()
-     // find tất cả các data
-      .skip((perPage * page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
+      .skip((perPage * page) - perPage) 
       .limit(perPage)
       .lean()
       .exec()
-    //   .then((products)=>{
-    //          // FIRST CONSOLE.LOG
-    //         console.log(employees);
-    //         return products;
-    //   })
-    //   .catch((err)=>{
-    //       return "Product query error"
-    //   })
 
-    // Product.find().lean()
 }
 
 exports.listProductDetail=(id)=>{

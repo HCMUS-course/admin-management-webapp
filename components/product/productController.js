@@ -10,7 +10,7 @@ exports.list=async function(req,res){
     let pageCount=0
     const products=await productServices.list(Number(page))
     const NumberOfProduct= await productServices.getNumberOfProduct()  
-    pageCount=NumberOfProduct/productPerPage;
+    pageCount=Math.ceil(NumberOfProduct/productPerPage)  ;
     const pageArray=pagination(Number(page),pageCount)
     res.render('productList',{products,pageArray:pageArray})
   }
