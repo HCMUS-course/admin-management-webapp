@@ -14,7 +14,7 @@ const productRouter = require('./components/product/index');
 const authRouter=require("./components/auth/index")
 const addRouter = require('./routes/productAdd')
 const loggedInAdminGuard=require("./middlewares/loginAdminGuard")
-var createAcc = require('./components/user/createAccount')
+var createAcc = require('./components/auth/createAccount')
 const app = express();
 
 

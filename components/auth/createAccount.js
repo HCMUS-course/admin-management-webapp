@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt');
 const a = require('./userModel');
 const mongoose = require('mongoose');
 
-const User = mongoose.model('users');
+const User = mongoose.model('user');
 router.get('/', function(req, res, next) {
   res.render('./admin/createAccount');
 });

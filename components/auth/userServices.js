@@ -1,5 +1,5 @@
 const User=require("./userModel")
-
+var bcrypt = require('bcrypt');
 
 module.exports.findByUsername=(username)=>{
     return User.findOne({username:username}).lean() 
@@ -7,6 +7,8 @@ module.exports.findByUsername=(username)=>{
 
 
 
-module.exports.validPassword=(password,user)=>{
-    return user.password=password
+module.exports.validPassword=async(password,user)=>{
+    console.log(password);
+    var a = await bcrypt.compare(password,user.password);
+    return a
 }
