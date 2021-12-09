@@ -12,6 +12,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productRouter = require('./components/product/index');
 const authRouter=require("./components/auth/index")
+const userRouter=require("./components/auth/indexUser")
 const addRouter = require('./components/product/productAdd')
 const loggedInAdminGuard=require("./middlewares/loginAdminGuard")
 const createAcc = require('./components/auth/createAccount')
@@ -55,7 +56,7 @@ app.use(bodyparser.json());
 app.use('/',authRouter)
 app.use('/',loggedInAdminGuard, indexRouter);
 app.use('/admin',authRouter)
-
+app.use('/user',userRouter)
 app.use("/product-add/add/editProduct", express.static(path.join(__dirname, "public")));
 app.use("/adminProfile/edit", express.static(path.join(__dirname, "public")));
 app.use("/adminProfile", express.static(path.join(__dirname, "public")));

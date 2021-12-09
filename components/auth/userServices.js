@@ -1,7 +1,7 @@
 const User=require("./userModel")
 var bcrypt = require('bcrypt');
 
-module.exports.getAllUser=(pageNum,ItemPerPage)=>{
+module.exports.getAllAdmin=(pageNum,ItemPerPage)=>{
     ItemPerPage = 4; // số lượng sản phẩm xuất hiện trên 1 page
     const page = pageNum || 1; 
   
@@ -14,11 +14,27 @@ module.exports.getAllUser=(pageNum,ItemPerPage)=>{
       
 }
 
- module.exports.countTotalOfUser=()=>{
+module.exports.countTotalOfAdmin=()=>{
     
     return User.countDocuments({role : 0});
 }
+module.exports.getAllUser=(pageNum,ItemPerPage)=>{
+    ItemPerPage = 4; // số lượng sản phẩm xuất hiện trên 1 page
+    const page = pageNum || 1; 
+  
+     return User
+      .find().where({role : 1})
+      .skip((ItemPerPage * page) - ItemPerPage) 
+      .limit(ItemPerPage)
+      .lean()
+      .exec()
+      
+}
 
+module.exports.countTotalOfUser=()=>{
+    
+    return User.countDocuments({role : 1});
+}
 module.exports.findByUsername=(username)=>{
     return User.findOne({username:username}).lean() 
 }
