@@ -65,25 +65,25 @@
                                     
                                     {{#if role}}
                                         
-                                        <td><a href="/adminProfile/{{_id}}">{{username}}</a></td>
+                                        <td><a href="/Profile/{{_id}}">{{username}}</a></td>
                                           <td>{{fullname}}</td>
                                           {{#if isLock}}
                                         <td>
-                                            <button class="ds-setting">Disable</button>
+                                            <a href ="/Profile/unlock/{{_id}}" class="ds-setting">Disable</a> 
                                         </td>
                                         {{else}}
                                          <td>
-                                            <button class="pd-setting">Active</button>
+                                            <a href ="/Profile/lock/{{_id}}" class="pd-setting">Active</a>
                                         </td>
                                         {{/if}}
                                       
                                         <td>{{email}}</td>
                                         <td>{{phone}}</td>
                                         <td>{{address}}</td>
-                                        <td>
+                                        {{!--<td>
                                             <a href ="/adminProfile/edit/{{this._id}}" ><i class ="fa fa-pencil fa-lg" aria-hidden="true" ></i></a>
-                                            <a href ="/adminProfile/delete/{{this._id}}" onclick = "return confirm('Are you sure to delete this product?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
-                                        </td>
+                                            <a href ="/adminProfile/delete/{{this._id}}" onclick = "return confirm('Are you sure to delete this user?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
+                                        </td>--}}
                                     {{else}}
                                     
                                      {{/if}}

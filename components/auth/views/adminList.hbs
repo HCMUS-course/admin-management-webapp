@@ -69,7 +69,7 @@
                                         
                                         
                                     {{else}}
-                                    <td><a href="/adminProfile/{{_id}}">{{username}}</a></td>
+                                    <td><a href="/Profile/{{_id}}">{{username}}</a></td>
                                           <td>{{fullname}}</td>
                                           {{#if isLock}}
                                         <td>
@@ -85,8 +85,8 @@
                                         <td>{{phone}}</td>
                                         <td>{{address}}</td>
                                         <td>
-                                            <a href ="/adminProfile/edit/{{this._id}}" ><i class ="fa fa-pencil fa-lg" aria-hidden="true" ></i></a>
-                                            <a href ="/adminProfile/delete/{{this._id}}" onclick = "return confirm('Are you sure to delete this product?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
+                                            <a href ="/Profile/edit/{{this._id}}" ><i class ="fa fa-pencil fa-lg" aria-hidden="true" ></i></a>
+                                            <a href ="/Profile/delete/{{this._id}}" onclick = "return confirm('Are you sure to delete this admin?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
                                         </td>
                                      {{/if}}
                                 </tr>

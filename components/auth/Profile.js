@@ -33,7 +33,7 @@ router.post('/',(req,res)=>{
 function updateRecord(req, res) {
   User.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
       if (!err) { 
-        res.redirect("/adminProfile/" + req.body._id);
+        res.redirect("/Profile/" + req.body._id);
       }
       else {
         console.log('Error during record update : ' + err);
@@ -60,6 +60,32 @@ router.get('/delete/:id',(req,res)=>{
     
     if(!err)
         res.redirect('/admin/1');
+    
+    else{
+      console.log('Error during record inserted: '+ err);
+    }
+  });
+});
+
+router.get('/lock/:id',(req,res)=>{
+      
+  User.findByIdAndUpdate(req.params.id,{isLock : true},(err,doc)=>{
+    
+    if(!err)
+        res.redirect('/user/1');
+    
+    else{
+      console.log('Error during record inserted: '+ err);
+    }
+  });
+});
+
+router.get('/unlock/:id',(req,res)=>{
+      
+  User.findByIdAndUpdate(req.params.id,{isLock : false},(err,doc)=>{
+    
+    if(!err)
+        res.redirect('/user/1');
     
     else{
       console.log('Error during record inserted: '+ err);
