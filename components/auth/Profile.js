@@ -6,14 +6,13 @@ const User = mongoose.model('user');
 
 
 router.get('/:id',(req,res)=>{
- 
-
   User.findById(req.params.id,(err,doc)=>{
          
           res.render('adminProfile',{
             viewTitle:"Profile", 
             user : doc,
-            btnType : "hidden"
+            btnType : "hidden",
+            stateEdit:""
           });
        
   });
@@ -25,11 +24,8 @@ router.post('/edit/:id',(req,res) =>{
   
   
 });
-router.post('/',(req,res)=>{
-  
-    res.redirect("/");
-  
-});
+
+
 function updateRecord(req, res) {
   User.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
       if (!err) { 
@@ -47,7 +43,8 @@ router.get('/edit/:id',(req,res)=>{
           res.render('adminProfile',{
             viewTitle:"Edit Profile",
             user : doc,
-            btnType : ""
+            btnType : "",
+            stateEdit : "hidden"
           });
         
       
