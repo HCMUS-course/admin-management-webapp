@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Product = mongoose.model('product');
 
 router.get('/' , function(req, res, next) {
-  
+  console.log("test");
   res.render('productAdd',{
       viewTitle:"Add Product"
   });
@@ -20,7 +20,7 @@ router.post('/',(req,res)=>{
 router.post('/editProduct/:id',(req,res) =>{
   
   a = updateRecord(req, res);
-  console.log(a);
+  
   
 });
 function updateRecord(req, res) {
@@ -79,9 +79,7 @@ function insertProduct(req,res){
     });
 }
 
-router.get('/list',(req,res)=>{
-  res.json("Add successfully. Please check in mongo")
-});
+
 
 router.get('/editProduct/:id',(req,res)=>{
       

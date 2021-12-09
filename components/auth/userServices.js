@@ -6,15 +6,17 @@ module.exports.getAllUser=(pageNum,ItemPerPage)=>{
     const page = pageNum || 1; 
   
      return User
-      .find()
+      .find().where({role : 0})
       .skip((ItemPerPage * page) - ItemPerPage) 
       .limit(ItemPerPage)
       .lean()
       .exec()
+      
 }
 
-module.exports.countTotalOfUser=()=>{
-    return User.countDocuments();
+ module.exports.countTotalOfUser=()=>{
+    
+    return User.countDocuments({role : 0});
 }
 
 module.exports.findByUsername=(username)=>{

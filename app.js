@@ -55,11 +55,15 @@ app.use(bodyparser.json());
 app.use('/',authRouter)
 app.use('/',loggedInAdminGuard, indexRouter);
 app.use('/admin',authRouter)
-app.use("/productAdd/editProduct", express.static(path.join(__dirname, "public")));
+
+app.use("/product-add/add/editProduct", express.static(path.join(__dirname, "public")));
+app.use("/adminProfile/edit", express.static(path.join(__dirname, "public")));
 app.use("/adminProfile", express.static(path.join(__dirname, "public")));
-app.use("/productAdd",loggedInAdminGuard,addRouter);
+
+
+app.use("/product-add/add",addRouter);
 app.use("/products",loggedInAdminGuard,productRouter);
-app.use('/createAccount',createAcc);
+app.use('/createAccount/admin',createAcc);
 app.use('/adminProfile',adminProfile);
 // app.use('/users',loggedInAdminGuard, usersRouter);
 

@@ -3,9 +3,9 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
 const a = require('./userModel');
 const mongoose = require('mongoose');
-
 const User = mongoose.model('user');
 router.get('/', function(req, res, next) {
+  
   res.render('createAccount');
 });
 router.post('/',(req,res)=>{
@@ -29,7 +29,7 @@ async function  createUser(req,res){
       
       newUser.save((err,doc)=>{
         if(!err)
-        res.redirect('/');
+        res.redirect('/admin/1');
         
         else{
           console.log('Error during record inserted: '+ err);

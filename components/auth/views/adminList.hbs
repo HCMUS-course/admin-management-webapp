@@ -12,14 +12,14 @@
 												<i class="icon nalika-home"></i>
 											</div>
 											<div class="breadcomb-ctn">
-												<h2>Product List</h2>
+												<h2>Admin Account List</h2>
 												<p>Welcome to Nalika <span class="bread-ntd">Admin Template</span></p>
 											</div>
 										</div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="breadcomb-report">
-											<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="icon nalika-download"></i></button>
+											{{!<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="icon nalika-download"></i></button>}}
 										</div>
                                     </div>
                                 </div>
@@ -34,16 +34,16 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-status-wrap">
-                            <h4>Products List</h4>
+                            <h4>Admin Account List</h4>
                             <div class="add-product">
-                                <a href="/productAdd">Add Product</a>
+                                <a href="/createAccount">Add Admin Account</a>
                             </div>
                             <table>
                                 <tr>
-                                    <th>Image</th>
+                                    
                                     <th>User name</th>
                                     <th>Full name</th>
-                                    <th>Authenticated</th>
+                                    <th>Status</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
@@ -65,16 +65,19 @@
                                         <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </td> --}}
                                     
-                                        <td><img src="img/new-product/5-small.jpg" alt="" /></td>
-                                        <td><a href="/adminProfile/{{_id}}">{{username}}</a></td>
+                                    {{#if role}}
+                                        
+                                        
+                                    {{else}}
+                                    <td><a href="/adminProfile/{{_id}}">{{username}}</a></td>
                                           <td>{{fullname}}</td>
-                                          {{#if isAuthenticated}}
+                                          {{#if isLock}}
                                         <td>
-                                            <button class="pd-setting">Active</button>
+                                            <button class="ds-setting">Disable</button>
                                         </td>
                                         {{else}}
                                          <td>
-                                            <button class="ds-setting">Disable</button>
+                                            <button class="pd-setting">Active</button>
                                         </td>
                                         {{/if}}
                                       
@@ -82,10 +85,10 @@
                                         <td>{{phone}}</td>
                                         <td>{{address}}</td>
                                         <td>
-                                            <a href ="#" ><i class ="fa fa-pencil fa-lg" aria-hidden="true" ></i></a>
-                                            <a href ="#" onclick = "return confirm('Are you sure to delete this product?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
+                                            <a href ="/adminProfile/edit/{{this._id}}" ><i class ="fa fa-pencil fa-lg" aria-hidden="true" ></i></a>
+                                            <a href ="/adminProfile/delete/{{this._id}}" onclick = "return confirm('Are you sure to delete this product?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
                                         </td>
-                                   
+                                     {{/if}}
                                 </tr>
                                     {{/each}}
                                 {{!-- <tr>
