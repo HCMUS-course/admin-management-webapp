@@ -3,6 +3,9 @@ const { route } = require('.');
 var router = express.Router();
 const mongoose = require('mongoose');
 const Product = mongoose.model('product');
+const cloudinary = require('../config/cloudinary')
+const multer = require('../config/multer')
+const imageUpload = multer.fields([{name : 'image1' , maxCount : 1},{name : 'image2', maxCount : 1},{name : 'image3', maxCount : 1},{name : 'image4', maxCount : 1}])
 
 router.get('/' , function(req, res, next) {
   console.log("test");
@@ -11,30 +14,25 @@ router.get('/' , function(req, res, next) {
   });
   
 });
-router.post('/',(req,res)=>{
+router.post('/', imageUpload, async(req,res)=>{
   
-  insertProduct(req, res);
-  
-});
+  var pic1 = "";
+  var pic2 = "";
+  var pic3 = "";
+  var pic4 = "";
+  const fd = "product/" + req.body.type + "/" +req.body.name; 
+  try{
+    pic1 = await cloudinary.uploader.upload(req.files.image1[0].path,{folder : fd});
+    pic2 = await cloudinary.uploader.upload(req.files.image2[0].path,{folder : fd});
+    pic3 = await cloudinary.uploader.upload(req.files.image3[0].path,{folder : fd});
+    pic4 = await cloudinary.uploader.upload(req.files.image4[0].path,{folder : fd});
+    
+  }
+  catch(err){
+    console.log(err);
+  }
 
-router.post('/editProduct/:id',(req,res) =>{
-  
-  a = updateRecord(req, res);
-  
-  
-});
-function updateRecord(req, res) {
-  Product.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
-      if (!err) { 
-        res.redirect("/products/id/" + req.body._id);
-      }
-      else {
-        console.log('Error during record update : ' + err);
-      }
-  });
-}
-function insertProduct(req,res){
-  
+
   var newProduct = new Product();
     newProduct.productType = req.body.type;
     newProduct.name = req.body.name;
@@ -68,6 +66,11 @@ function insertProduct(req,res){
     newProduct.buyCount = 0;
     newProduct.viewCount = 0;
 
+    newProduct.images.push(pic1.url);
+    newProduct.images.push(pic2.url);
+    newProduct.images.push(pic3.url);
+    newProduct.images.push(pic4.url);
+
     newProduct.save((err,doc)=>{
       if(!err)
       res.redirect('/products/1');
@@ -77,8 +80,52 @@ function insertProduct(req,res){
       }
 
     });
-}
+  
+});
 
+router.post('/editProduct/:id',imageUpload,async (req,res) =>{
+  
+    let product = await Product.findById(req.params.id);
+    var pic1 = "";
+    var pic2 = "";
+    var pic3 = "";
+    var pic4 = "";
+    const fd = "product/" + product.productType + "/" +product.name;
+    
+    try{
+      await cloudinary.api.delete_resources(all, {folder : fd});
+    }catch(err){
+        console.log(err);
+    }
+    
+      
+      console.log(fd);
+      const fd2 = "product/" + req.body.type + "/" +req.body.name; 
+      console.log(fd2);
+      try{
+      pic1 = await cloudinary.uploader.upload(req.files.image1[0].path,{folder : fd2});
+      pic2 = await cloudinary.uploader.upload(req.files.image2[0].path,{folder : fd2});
+      pic3 = await cloudinary.uploader.upload(req.files.image3[0].path,{folder : fd2});
+      pic4 = await cloudinary.uploader.upload(req.files.image4[0].path,{folder : fd2});
+      }
+      catch(err){
+        console.log(err);
+      }
+    
+      
+  
+  Product.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    
+    if (!err) { 
+      res.redirect("/products/id/" + req.body._id);
+    }
+    else {
+      console.log('Error during record update : ' + err);
+    }
+});
+  
+  
+});
 
 
 router.get('/editProduct/:id',(req,res)=>{

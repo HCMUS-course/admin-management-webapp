@@ -4,19 +4,17 @@ var bcrypt = require('bcrypt');
 const a = require('./userModel');
 const mongoose = require('mongoose');
 const User = mongoose.model('user');
-
 router.get('/', function(req, res, next) {
   
   res.render('createAccount');
 });
-
 router.post('/',(req,res)=>{
   
     createUser(req, res);
     
 });
 
-async function createUser(req,res){
+async function  createUser(req,res){
     const passworddHash = await bcrypt.hash(req.body.password,10);
     const newUser = new User();
       newUser.role = 0;
