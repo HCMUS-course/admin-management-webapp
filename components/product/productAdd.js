@@ -22,10 +22,10 @@ router.post('/', imageUpload, async(req,res)=>{
   var pic4 = "";
   const fd = "product/" + req.body.type + "/" +req.body.name; 
   try{
-    pic1 = await cloudinary.uploader.upload(req.files.image1[0].path,{folder : fd});
-    pic2 = await cloudinary.uploader.upload(req.files.image2[0].path,{folder : fd});
-    pic3 = await cloudinary.uploader.upload(req.files.image3[0].path,{folder : fd});
-    pic4 = await cloudinary.uploader.upload(req.files.image4[0].path,{folder : fd});
+    pic1 = await cloudinary.uploader.upload(req.files.image1[0].path,{folder : fd,public_id: "p1"});
+    pic2 = await cloudinary.uploader.upload(req.files.image2[0].path,{folder : fd,public_id: "p2"});
+    pic3 = await cloudinary.uploader.upload(req.files.image3[0].path,{folder : fd,public_id: "p3"});
+    pic4 = await cloudinary.uploader.upload(req.files.image4[0].path,{folder : fd,public_id: "p4"});
     
   }
   catch(err){
@@ -85,7 +85,7 @@ router.post('/', imageUpload, async(req,res)=>{
 
 router.post('/editProduct/:id',imageUpload,async (req,res) =>{
   
-    let product = await Product.findById(req.params.id);
+    /*let product = await Product.findById(req.params.id);
     var pic1 = "";
     var pic2 = "";
     var pic3 = "";
@@ -113,8 +113,11 @@ router.post('/editProduct/:id',imageUpload,async (req,res) =>{
       }
     
       
-  
-  Product.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+  */
+
+      
+ 
+    Product.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
     
     if (!err) { 
       res.redirect("/products/id/" + req.body._id);
@@ -142,9 +145,25 @@ router.get('/editProduct/:id',(req,res)=>{
       });
 });
 
-router.get('/delete/:id',(req,res)=>{
-      
+ router.get('/delete/:id', async (req,res)=>{
+  Product.findById(req.params.id,async (err,doc)=>{
+    const fd = "product/" + doc.productType + "/" +doc.name;
+    console.log(fd);
+    try{
+    await cloudinary.api.delete_resources(fd+"/p1");
+    await cloudinary.api.delete_resources(fd+"/p2");
+    await cloudinary.api.delete_resources(fd+"/p3");
+    await cloudinary.api.delete_resources(fd+"/p4");
+
+    await cloudinary.api.delete_folder(fd);  
+    }catch(err){
+      console.log(err);
+    }       
+    
+  });
+  
   Product.findByIdAndRemove(req.params.id,(err,doc)=>{
+    //await cloudinary.api.delete_resources([req.body.images[0],req.body.images[1],req.body.images[2],req.body.images[3]], {folder : fd});
     
     if(!err)
         res.redirect('/products/1');
