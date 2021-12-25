@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <form action ="Profile" method ="POST" autocomplete="off">
+        <form action ="" method ="POST" autocomplete="off">
            <input type ="hidden" name ="_id" value = "{{user._id}}">
         <!-- Single pro tab start-->
            <div class="single-product-tab-area mg-b-30">
@@ -93,6 +93,6 @@
         </div>
        
         </form>
-       <div class="add-product"><a {{stateEdit}} href = "./edit/{{user._id}}" >Edit</a></div>
+       <div class="add-product"><a {{stateEdit}} href = '/profile/edit/{{user._id}}' >Edit</a></div>
 
   

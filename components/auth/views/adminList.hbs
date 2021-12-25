@@ -36,7 +36,7 @@
                         <div class="product-status-wrap">
                             <h4>Admin Account List</h4>
                             <div class="add-product">
-                                <a href="/createAccount">Add Admin Account</a>
+                                <a href="/createAccount/admin">Add Admin Account</a>
                             </div>
                             <table>
                                 <tr>
@@ -69,7 +69,7 @@
                                         
                                         
                                     {{else}}
-                                    <td><a href="/Profile/{{_id}}">{{username}}</a></td>
+                                    <td><a href="/profile/{{_id}}">{{username}}</a></td>
                                           <td>{{fullname}}</td>
                                           {{#if isLock}}
                                         <td>
@@ -85,8 +85,8 @@
                                         <td>{{phone}}</td>
                                         <td>{{address}}</td>
                                         <td>
-                                            <a href ="/Profile/edit/{{this._id}}" ><i class ="fa fa-pencil fa-lg" aria-hidden="true" ></i></a>
-                                            <a href ="/Profile/delete/{{this._id}}" onclick = "return confirm('Are you sure to delete this admin?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
+                                            <a href ="/profile/edit/{{this._id}}" ><i class ="fa fa-pencil fa-lg" aria-hidden="true" ></i></a>
+                                            <a href ="/profile/delete/{{this._id}}" onclick = "return confirm('Are you sure to delete this admin?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
                                         </td>
                                      {{/if}}
                                 </tr>

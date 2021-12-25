@@ -14,8 +14,10 @@ router.post('/login',
                                     })
 );
 
-router.use('/:route', express.static('public'));
+router.use('/:route', express.static('public'))
 router.get("/:page",adminController.listAdmin)
+
+
 
 
 module.exports=router

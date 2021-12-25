@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 const Product = mongoose.model('product');
 const cloudinary = require('../config/cloudinary')
 const multer = require('../config/multer')
-const imageUpload = multer.fields([{name : 'image1' , maxCount : 1},{name : 'image2', maxCount : 1},{name : 'image3', maxCount : 1},{name : 'image4', maxCount : 1}])
+const imageUpload = multer.fields([{name : 'image1' , maxCount : 1},{name : 'image2', maxCount : 1},{name : 'image3', maxCount : 1},{name : 'image4', maxCount : 1},{name : 'image5', maxCount : 1}])
 
 router.get('/' , function(req, res, next) {
-  console.log("test");
+  
   res.render('productAdd',{
       viewTitle:"Add Product"
   });
@@ -20,6 +20,7 @@ router.post('/', imageUpload, async(req,res)=>{
   var pic2 = "";
   var pic3 = "";
   var pic4 = "";
+  var pic5 = "";
   const fd = "product/" + req.body.type + "/" +req.body.name; 
   
   for (var i in req.files){
@@ -42,6 +43,12 @@ router.post('/', imageUpload, async(req,res)=>{
     {
      
       pic4 = await cloudinary.uploader.upload(req.files.image4[0].path,{folder : fd,public_id: "p4"});
+    
+    }
+    else if (req.files[i][0].fieldname == "image5")
+    {
+     
+      pic5 = await cloudinary.uploader.upload(req.files.image5[0].path,{folder : fd,public_id: "p5"});
     
     }
   }
@@ -86,6 +93,7 @@ router.post('/', imageUpload, async(req,res)=>{
     newProduct.images.push(pic2.url);
     newProduct.images.push(pic3.url);
     newProduct.images.push(pic4.url);
+    newProduct.images.push(pic5.url);
 
     newProduct.save((err,doc)=>{
       if(!err)
@@ -107,7 +115,8 @@ router.post('/editProduct/:id',imageUpload,async (req,res) =>{
     var pic2 = "";
     var pic3 = "";
     var pic4 = "";
-    var a = b = c = d =0;
+    var pic5 = "";
+    var a = b = c = d = e =0;
     const fd = "product/" + doc.productType + "/" +doc.name;
     const newfd = "product/" + req.body.type + "/" + req.body.name;
         
@@ -146,6 +155,15 @@ router.post('/editProduct/:id',imageUpload,async (req,res) =>{
           d = 1;
           pic4 = pic4.url;
         }
+        else if (req.files[i][0].fieldname == "image5")
+        {
+          
+          await cloudinary.api.delete_resources(fd+"/p5");
+         
+          pic5 = await cloudinary.uploader.upload(req.files.image5[0].path,{folder : fd,public_id: "p5"});
+          e = 1;
+          pic5 = pic5.url;
+        }
       }
       if (a == 0){
         pic1 = doc.images[0];
@@ -158,6 +176,9 @@ router.post('/editProduct/:id',imageUpload,async (req,res) =>{
       }
       if (d == 0){
         pic4 = doc.images[3];
+      }
+      if (e == 0){
+        pic5 = doc.images[4];
       }
  
       if(newfd != fd){
@@ -185,6 +206,12 @@ router.post('/editProduct/:id',imageUpload,async (req,res) =>{
                 }catch(err){
                   console.log(err);
                 }
+                try{
+                  pic5 =  await cloudinary.uploader.rename(fd+"/p5",newfd+"/p5");
+                  pic5 = pic5.url;
+                    }catch(err){
+                      console.log(err);
+                    }
         
           await cloudinary.api.delete_resources(fd+"/p1");
           
@@ -196,6 +223,8 @@ router.post('/editProduct/:id',imageUpload,async (req,res) =>{
          
         
           await cloudinary.api.delete_resources(fd+"/p4");
+
+          await cloudinary.api.delete_resources(fd+"/p5");
          
           await cloudinary.api.delete_folder(fd);  
                   
@@ -208,6 +237,7 @@ router.post('/editProduct/:id',imageUpload,async (req,res) =>{
     pic.push(pic2);
     pic.push(pic3);
     pic.push(pic4);
+    pic.push(pic5);
     const data = {
     productType : req.body.type,
     name : req.body.name,
@@ -286,6 +316,8 @@ router.get('/editProduct/:id',(req,res)=>{
     await cloudinary.api.delete_resources(fd+"/p3");
             
     await cloudinary.api.delete_resources(fd+"/p4");
+
+    await cloudinary.api.delete_resources(fd+"/p5");
              
     
     await cloudinary.api.delete_folder(fd);  

@@ -8,6 +8,7 @@
     "dev-debug": "nodemon --inspect ./bin/www"
   },
   "dependencies": {
+    "alert": "^5.0.10",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.27.1",
     "cloudinary-core": "^2.12.0",

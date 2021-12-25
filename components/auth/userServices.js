@@ -1,5 +1,5 @@
 const User=require("./userModel")
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt')
 
 module.exports.getAllAdmin=(pageNum,ItemPerPage)=>{
     ItemPerPage = 4; // số lượng sản phẩm xuất hiện trên 1 page
@@ -47,6 +47,22 @@ module.exports.validPassword=async(password,user)=>{
 }
 
 module.exports.findByID=(id)=>{
-  
     return User.findOne({_id:id}).lean();
 }
+
+module.exports.findAndUpdate = (id,temp) =>{
+    return  User.findOneAndUpdate({ _id: id }, temp, { new: true })
+}
+
+module.exports.findAndRemove = (id,myid) =>{
+    
+    if(myid == id){
+        return;
+    }
+    else{
+        return User.findByIdAndRemove(id)
+    }
+  
+    
+}
+
