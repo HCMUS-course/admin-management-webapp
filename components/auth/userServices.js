@@ -53,6 +53,9 @@ module.exports.findByID=(id)=>{
 module.exports.findAndUpdate = (id,temp) =>{
     return  User.findOneAndUpdate({ _id: id }, temp, { new: true })
 }
+module.exports.findbyIDAndUpdateStatus = (id,temp) =>{
+    return  User.findByIdAndUpdate(id,{isLock : temp})
+}
 
 module.exports.findAndRemove = (id,myid) =>{
     
@@ -61,8 +64,16 @@ module.exports.findAndRemove = (id,myid) =>{
     }
     else{
         return User.findByIdAndRemove(id)
-    }
-  
-    
+    } 
 }
 
+module.exports.checkExist = async (username) => {
+    var temp = 0
+    const user = await User.findOne({username : username}).lean()
+    if(user != null) {
+        return true
+    }
+    else{
+        return false
+    }
+}

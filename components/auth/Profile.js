@@ -10,30 +10,6 @@ router.use('/edit/:id', express.static('public'))
 router.post('/edit/:id',adminController.editProfile)
 router.get('/edit/:id',adminController.viewEdit)
 router.get('/delete/:id',adminController.deleteAdminAccount)
-
-router.get('/lock/:id',(req,res)=>{
-      
-  User.findByIdAndUpdate(req.params.id,{isLock : true},(err,doc)=>{
-    
-    if(!err)
-        res.redirect('/user/1');
-    
-    else{
-      console.log('Error during record inserted: '+ err);
-    }
-  });
-});
-
-router.get('/unlock/:id',(req,res)=>{
-      
-  User.findByIdAndUpdate(req.params.id,{isLock : false},(err,doc)=>{
-    
-    if(!err)
-        res.redirect('/user/1');
-    
-    else{
-      console.log('Error during record inserted: '+ err);
-    }
-  });
-});
+router.get('/lock/:id',adminController.lockAccount)
+router.get('/unlock/:id',adminController.unlockAccount)
 module.exports = router;

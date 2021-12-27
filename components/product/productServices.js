@@ -1,5 +1,6 @@
 const Product=require('./productsModel')
 const {ObjectId}=require('mongodb')
+const cloudinary = require('../config/cloudinary')
 
 exports.list=(pageNum)=>{
     let perPage = 4; // số lượng sản phẩm xuất hiện trên 1 page
@@ -40,4 +41,25 @@ exports.create =(req,res) =>{
                    message:err.message|| "Error"
                });
            });
+}
+
+module.exports.uploadImage = (fd,image,name) =>{
+      return cloudinary.uploader.upload(image,{folder : fd,public_id: name})
+}
+
+module.exports.deleteImage = (fd,name) =>{
+    return cloudinary.api.delete_resources(fd+name)
+}
+
+module.exports.renameImage = (oldName,newName) =>{
+    return  cloudinary.uploader.rename(oldName,newName)
+}
+module.exports.deleteFolder = (fd) =>{
+    return  cloudinary.api.delete_folder(fd)  
+}
+module.exports.findById = (id) =>{
+    return Product.findById(id)
+}
+module.exports.findByIdAndRemove = (id) =>{
+    return Product.findByIdAndRemove(id)
 }
