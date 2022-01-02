@@ -53,7 +53,7 @@ app.use(bodyparser.urlencoded({
 }));
 app.use(bodyparser.json());
 
-app.use('/statistics',chartRouter)
+app.use('/statistics',loggedInAdminGuard,chartRouter)
 app.use('/',authRouter)
 app.use('/',loggedInAdminGuard, indexRouter);
 app.use('/admin',authRouter)
