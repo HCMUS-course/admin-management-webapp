@@ -65,7 +65,6 @@
 </head>
  
 
-
 <body>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -75,13 +74,13 @@
         <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                <a href="/"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
                 <strong><img src="img/logo/logosn.png" alt="" /></strong>
             </div>
 			<div class="nalika-profile">
-				<div class="profile-dtl">
+				{<div class="profile-dtl">
 					<a href="#"><img src="img/notification/4.jpg" alt="" /></a>
-					<h2>Lakian <span class="min-dtn">Das</span></h2>
+					<h2>{{user.username}} <span class="min-dtn"></span></h2>
 				</div>
 				<div class="profile-social-dtl">
 					<ul class="dtl-social">
@@ -95,7 +94,7 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            <a class="has-arrow" href="index.html">
+                            <a class="has-arrow" href="/">
 								   <i class="icon nalika-home icon-wrap"></i>
 								   <span class="mini-click-non">Ecommerce</span>
 								</a>
@@ -107,11 +106,11 @@
                                 <li><a title="Administrator management" href="/admin/1"><span class="mini-sub-pro">Admin management</span></a></li>
                                 <li><a title="User management" href="/user/1"><span class="mini-sub-pro">User management</span></a></li>
                                 <li><a title="Product Edit" href="/product-add/add"><span class="mini-sub-pro">Add Product </span></a></li>
-                                {{!-- <li><a title="Product Detail" href="/product-detail.html"><span class="mini-sub-pro">Product Detail</span></a></li> --}}
+                                {{!-- <li><a title="Product Detail" href="/product-detail.html"><span class="mini-sub-pro">Product Detail</span></a></li> 
                                 <li><a title="Product Cart" href="product-cart.html"><span class="mini-sub-pro">Product Cart</span></a></li>
-                                <li><a title="Product Payment" href="product-payment.html"><span class="mini-sub-pro">Product Payment</span></a></li>
-                                <li><a title="Analytics" href="analytics.html"><span class="mini-sub-pro">Analytics</span></a></li>
-                                <li><a title="Widgets" href="widgets.html"><span class="mini-sub-pro">Widgets</span></a></li>
+                                <li><a title="Product Payment" href="product-payment.html"><span class="mini-sub-pro">Product Payment</span></a></li>--}}
+                                <li><a title="Sales Statistics Chart" href="/statistics"><span class="mini-sub-pro">Sales Statistics Chart</span></a></li>
+                                
                             </ul>
                         </li>
                         <li>
@@ -848,6 +847,7 @@
     <!-- main JS
 		============================================ -->
     <script src="js/main.js"></script>
+    
 </body>
 
 </html>

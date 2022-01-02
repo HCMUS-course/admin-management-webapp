@@ -1,0 +1,192 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    
+            <!-- Mobile Menu end -->
+           <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="breadcomb-wp">
+											<div class="breadcomb-icon">
+												<i class="icon nalika-home"></i>
+											</div>
+											<div class="breadcomb-ctn">
+												<h2>Sales Statistics Chart</h2>
+												<p>Welcome to Techzones <span class="bread-ntd">Admin Template</span></p>
+											</div>
+										</div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="breadcomb-report">
+											<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="icon nalika-download"></i></button>
+										</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+        <!-- Charts Start-->
+        <div class="charts-area mg-tb-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="charts-single-pro responsive-mg-b-30">
+                            <div class="alert-title">
+                                <h2>Sale by Date</h2>
+                                <p></p>
+                            </div>
+                            
+                                <canvas id="byDate"></canvas>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="charts-single-pro">
+                            <div class="alert-title">
+                                <h2>Sales by Month</h2>
+                                <p></p>
+                            </div>
+                            
+                                <canvas id="byMonth"></canvas>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="charts-single-pro mg-tb-30 responsive-mg-b-0">
+                            <div class="alert-title">
+                                <h2>Sales by Year</h2>
+                                <p></p>
+                            </div>
+                            
+                                <canvas id="byYear"></canvas>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="charts-single-pro mg-tb-30">
+                            <div class="alert-title">
+                                <h2>Bar Chart Multi axis</h2>
+                                <p>This sample illustrates how you can display a data series, using multiple axes in your business chart. It is sometimes used to show trend data, and the comparison of multiple data sets</p>
+                            </div>
+                            <div id="bar4-chart">
+                                <canvas id="barchart4"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="charts-single-pro">
+                            <div class="alert-title">
+                                <h2>Bar Chart Stacked</h2>
+                                <p>A bar chart provides a way of showing data values represented as Stacked bars. It is sometimes used to show trend data, and the comparison of multiple data sets</p>
+                            </div>
+                            <div id="bar5-chart">
+                                <canvas id="barchart5"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+        var date = [{{xValues}}]
+        var time = []
+        date.forEach(e=>{
+             var temp = e.toString()
+             var tmp = [temp.slice(0, 4), '-', temp.slice(4)].join('');
+             tmp = [tmp.slice(0, 7), '-', tmp.slice(7)].join('');
+             time.push(tmp)
+        })
+        var sale = [{{yValues}}];
+    
+        var barColors = "red";
+        new Chart("byDate", {
+        type: "bar",
+        data: {
+            labels: time,
+            datasets: [{
+            backgroundColor: barColors,
+            data: sale
+        }]
+    },
+        options: {
+            legend: {display: false},
+            scales: {
+            yAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+            }],
+        }       
+  }
+});
+</script>
+<script>
+        var date = [{{xValuesM}}]
+        var time = []
+        date.forEach(e=>{
+             var temp = e.toString()
+             var tmp = [temp.slice(0, 4), '-', temp.slice(4)].join('');
+             time.push(tmp)
+        })
+        var sale = [{{yValuesM}}];
+    
+        var barColors = "red";
+        new Chart("byMonth", {
+        type: "bar",
+        data: {
+            labels: time,
+            datasets: [{
+            backgroundColor: barColors,
+            data: sale
+        }]
+    },
+        options: {
+            legend: {display: false},
+            scales: {
+            yAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+            }],
+        }       
+  }
+});
+</script>
+<script>
+        var date = [{{xValuesY}}]
+        
+        var sale = [{{yValuesY}}];
+    
+        var barColors = "red";
+        new Chart("byYear", {
+        type: "bar",
+        data: {
+            labels: date,
+            datasets: [{
+            backgroundColor: barColors,
+            data: sale
+        }]
+    },
+        options: {
+            legend: {display: false},
+            scales: {
+            yAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+            }],
+        }       
+  }
+});
+</script>
+        

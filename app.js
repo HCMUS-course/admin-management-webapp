@@ -17,6 +17,7 @@ const addRouter = require('./components/product/productAdd')
 const loggedInAdminGuard=require("./middlewares/loginAdminGuard")
 const createAcc = require('./components/auth/createAccount')
 const profile = require("./components/auth/Profile")
+const chartRouter = require("./components/product/indexChart")
 // const adminListRouter=require('./components/auth/adminController')
 const app = express();
 
@@ -52,11 +53,12 @@ app.use(bodyparser.urlencoded({
 }));
 app.use(bodyparser.json());
 
-
+app.use('/statistics',chartRouter)
 app.use('/',authRouter)
 app.use('/',loggedInAdminGuard, indexRouter);
 app.use('/admin',authRouter)
 app.use('/user',userRouter)
+
 app.use("/product-add/add/editProduct", express.static(path.join(__dirname, "public")));
 
 
@@ -65,6 +67,7 @@ app.use("/product-add/add",addRouter);
 app.use("/products",loggedInAdminGuard,productRouter);
 app.use('/createAccount/admin',createAcc);
 app.use('/profile',profile);
+
 // app.use('/users',loggedInAdminGuard, usersRouter);
 
 // catch 404 and forward to error handler
