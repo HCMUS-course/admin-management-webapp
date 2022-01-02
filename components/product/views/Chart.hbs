@@ -70,19 +70,20 @@
                             
                         </div>
                     </div>
-                    {{!--
+                    
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="charts-single-pro mg-tb-30">
                             <div class="alert-title">
-                                <h2>Bar Chart Multi axis</h2>
-                                <p>This sample illustrates how you can display a data series, using multiple axes in your business chart. It is sometimes used to show trend data, and the comparison of multiple data sets</p>
+                                <h2>10 Best-Selling Products of All-Time</h2>
+                                
                             </div>
-                            <div id="bar4-chart">
-                                <canvas id="barchart4"></canvas>
-                            </div>
+                                <div> {{top10}}</div>
+                                <canvas id="top10"></canvas>
+                            
                         </div>
                     </div>
                 </div>
+                {{!--
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="charts-single-pro">
@@ -142,7 +143,7 @@
         })
         var sale = [{{yValuesM}}];
     
-        var barColors = "red";
+        var barColors = "yellow";
         new Chart("byMonth", {
         type: "bar",
         data: {
@@ -169,7 +170,7 @@
         
         var sale = [{{yValuesY}}];
     
-        var barColors = "red";
+        var barColors = "green";
         new Chart("byYear", {
         type: "bar",
         data: {
@@ -191,4 +192,41 @@
   }
 });
 </script>
+<script>
+        let a = [{{xtop10}}]
+        let name = []
+        a.forEach(e =>{
+            let n = e.toString()
+            n = n.replaceAll('/','')
+            name.push(n)
+        })
+        let count = [{{ytop10}}]
         
+        console.log(date)
+        let barColor = "red";
+        new Chart("top10", {
+        type: "bar",
+        data: {
+            labels: name,
+            datasets: [{
+            backgroundColor: barColor,
+            data: count
+        }]
+    },
+        options: {
+            legend: {display: false},
+            scales: {
+            yAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+            }],
+            xAxes:[{
+                ticks:{
+                    display: false
+                }
+            }],
+        }       
+  }
+});
+</script>        
