@@ -63,3 +63,13 @@ module.exports.findById = (id) =>{
 module.exports.findByIdAndRemove = (id) =>{
     return Product.findByIdAndRemove(id)
 }
+module.exports.checkExist = async (name) => {
+    
+    const user = await Product.findOne({name : name}).lean()
+    if(user != null) {
+        return true
+    }
+    else{
+        return false
+    }
+}

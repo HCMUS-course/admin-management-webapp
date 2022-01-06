@@ -55,7 +55,7 @@ app.use(bodyparser.json());
 
 app.use('/statistics',chartRouter)
 app.use('/',authRouter)
-app.use('/',loggedInAdminGuard, indexRouter);
+app.use('/',loggedInAdminGuard, chartRouter);
 app.use('/admin',authRouter)
 app.use('/user',userRouter)
 

@@ -22,6 +22,8 @@ exports.list=async function(req,res){
   }
 
   module.exports.addProduct= async (req,res) =>{
+    const check = await productServices.checkExist(req.body.name)
+    if(!check){
   var pic1 = '';
   var pic2 = '';
   var pic3 = '';
@@ -108,6 +110,14 @@ exports.list=async function(req,res){
       }
 
     });
+  }
+  else{
+    const rp = 'Product name already exists'
+        res.render('productAdd',{
+            viewTitle:"Add Product",
+            check : rp
+        })
+  }
   }
 
   module.exports.editProduct = async (req,res) =>{

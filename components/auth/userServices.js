@@ -68,7 +68,7 @@ module.exports.findAndRemove = (id,myid) =>{
 }
 
 module.exports.checkExist = async (username) => {
-    var temp = 0
+    
     const user = await User.findOne({username : username}).lean()
     if(user != null) {
         return true
