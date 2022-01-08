@@ -1497,20 +1497,23 @@ ul#single-product-tab li{
 	float:left;
 }
 .color-quality-details .red, .sidebar-color-area .red{
-	background:#00ffff;
+	background:#ff0015;
+}
+.color-quality-details .silver, .sidebar-color-area .red{
+	background:#686565;
 }
 .color-quality-details .green, .sidebar-color-area .green{
-	background:#ef7676;
+	background:#7aef76;
 }
 .color-quality-details .yellow, .sidebar-color-area .yellow{
-	background:#f06eaa;
+	background:#f0e36e;
 	border: 1px solid #05c2f9;
 }
 .color-quality-details .black, .sidebar-color-area .black{
-	background:#2094ed;
+	background:#0a0a0a;
 }
 .color-quality-details .white, .sidebar-color-area .white{
-	background:#f7941d;
+	background:#fdfcfb;
 }
 .single-pro-size span, .color-quality-details span {
   display: inline-block; 

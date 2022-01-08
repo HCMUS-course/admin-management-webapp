@@ -38,7 +38,7 @@
 							<div class="row">
 								<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 									<div id="myTabContent1" class="tab-content">
-										<div class="product-details-thumbs slider-thumbs-1" id="single-tab1">
+										<div class="product-tab-list tab-pane fade active in" id="single-tab1">
 											<img src="{{productDetail.images.[0]}}" alt="" />
 										</div>
 										<div class="product-tab-list tab-pane fade" id="single-tab2">
@@ -55,7 +55,7 @@
 										</div>
 									</div>
 									<ul id="single-product-tab">
-										<li class="active">
+										<li>
 											<a href="#single-tab1"><img src="{{productDetail.images.[0]}}" alt="" /></a>
 										</li>
 										<li>
@@ -90,11 +90,11 @@
 											<span>S</span> <span>M</span> <span>L</span> <span>XL</span> <span>XXL</span>
 										</div> --}}
 										<div class="color-quality-pro">
-											<div class="color-quality-details">
+											{{!--<div class="color-quality-details">
 												<h5>Color</h5>
-												<span class="red"></span> <span class="green"></span> <span class="yellow"></span> <span class="black"></span> <span class="white"></span>
+												<span class="{{productDetail.color}}"></span>
 											</div>
-											{{!--<div class="color-quality">
+											<div class="color-quality">
 												<h4>Quality</h4>
 												<div class="quantity">
 													<div class="pro-quantity-changer">
@@ -125,6 +125,7 @@
 										<div class="single-pro-cn">
 											<h3>OVERVIEW</h3>
                                             {{!-- {{productDetail.detail}} --}}
+											<p>Color: {{productDetail.color}}</p>
                                             <p>Weight: {{productDetail.detail.itemWeight}}</p>
                                             <p>Model: {{productDetail.detail.modelName}}</p>
                                             <p>Processor: {{productDetail.detail.processor}}</p>
