@@ -38,47 +38,50 @@
 							<div class="row">
 								<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 									<div id="myTabContent1" class="tab-content">
-										<div class="product-tab-list tab-pane fade active in" id="single-tab1">
-											<img src="img/product/bg-1.jpg" alt="" />
+										<div class="product-details-thumbs slider-thumbs-1" id="single-tab1">
+											<img src="{{productDetail.images.[0]}}" alt="" />
 										</div>
 										<div class="product-tab-list tab-pane fade" id="single-tab2">
-											<img src="img/product/bg-2.jpg" alt="" />
+											<img src="{{productDetail.images.[1]}}" alt="" />
 										</div>
 										<div class="product-tab-list tab-pane fade" id="single-tab3">
-											<img src="img/product/bg-3.jpg" alt="" />
+											<img src="{{productDetail.images.[2]}}" alt="" />
 										</div>
 										<div class="product-tab-list tab-pane fade" id="single-tab4">
-											<img src="img/product/bg-1.jpg" alt="" />
+											<img src="{{productDetail.images.[3]}}" alt="" />
 										</div>
 										<div class="product-tab-list tab-pane fade" id="single-tab5">
-											<img src="img/product/bg-2.jpg" alt="" />
+											<img src="{{productDetail.images.[4]}}" alt="" />
 										</div>
 									</div>
 									<ul id="single-product-tab">
 										<li class="active">
-											<a href="#single-tab1"><img src="img/product/1.jpg" alt="" /></a>
+											<a href="#single-tab1"><img src="{{productDetail.images.[0]}}" alt="" /></a>
 										</li>
 										<li>
-											<a href="#single-tab2"><img src="img/product/2.jpg" alt="" /></a>
+											<a href="#single-tab2"><img src="{{productDetail.images.[1]}}" alt="" /></a>
 										</li>
 										<li>
-											<a href="#single-tab3"><img src="img/product/3.jpg" alt="" /></a>
+											<a href="#single-tab3"><img src="{{productDetail.images.[2]}}" alt="" /></a>
 										</li>
 										<li>
-											<a href="#single-tab4"><img src="img/product/1.jpg" alt="" /></a>
+											<a href="#single-tab4"><img src="{{productDetail.images.[3]}}" alt="" /></a>
+										</li>
+										<li>
+											<a href="#single-tab5"><img src="{{productDetail.images.[4]}}" alt="" /></a>
 										</li>
 									</ul>
 								</div>
 								<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
 									<div class="single-product-details res-pro-tb">
 										<h1>{{productDetail.name}}</h1>
-										<span class="single-pro-star">
+										{{!--<span class="single-pro-star">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
-										</span>
+										</span>--}}
 										<div class="single-pro-price">
 											<span class="single-regular">{{productDetail.price}}$</span><span class="single-old">{{!--<del>$2000.00</del>--}}</span>
 										</div>

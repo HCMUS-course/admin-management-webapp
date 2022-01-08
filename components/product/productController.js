@@ -133,6 +133,7 @@ exports.list=async function(req,res){
           
         
         for (var i in req.files){
+          
           if(req.files[i][0].fieldname == "image1"){
             
             await productServices.deleteImage(fd,"/p1")
@@ -142,28 +143,28 @@ exports.list=async function(req,res){
           }
           else if (req.files[i][0].fieldname == "image2"){
             await productServices.deleteImage(fd,"/p2")
-            pic1 = await productServices.uploadImage(fd,req.files.image1[0].path,'p2')
+            pic2 = await productServices.uploadImage(fd,req.files.image2[0].path,'p2')
             pic2 = pic2.url;
             b = 1;
           }
           else if (req.files[i][0].fieldname == "image3"){
             
             await productServices.deleteImage(fd,"/p3")
-            pic1 = await productServices.uploadImage(fd,req.files.image1[0].path,'p3')
+            pic3 = await productServices.uploadImage(fd,req.files.image3[0].path,'p3')
             pic3 = pic3.url;
             c = 1;
           }
           else if (req.files[i][0].fieldname == "image4")
           {
             await productServices.deleteImage(fd,"/p4")
-            pic1 = await productServices.uploadImage(fd,req.files.image1[0].path,'p4')
+            pic4 = await productServices.uploadImage(fd,req.files.image4[0].path,'p4')
             d = 1;
             pic4 = pic4.url;
           }
           else if (req.files[i][0].fieldname == "image5")
           {
             await productServices.deleteImage(fd,"/p5")
-            pic1 = await productServices.uploadImage(fd,req.files.image1[0].path,'p5')
+            pic5 = await productServices.uploadImage(fd,req.files.image5[0].path,'p5')
             e = 1;
             pic5 = pic5.url;
           }
