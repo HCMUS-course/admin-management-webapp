@@ -75,6 +75,10 @@
 								<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
 									<div class="single-product-details res-pro-tb">
 										<h1>{{productDetail.name}}</h1>
+										 <td>
+                                            <a href ="/product-add/add/editProduct/{{productDetail._id}}" ><i class ="fa fa-pencil fa-lg" aria-hidden="true" ></i></a>
+                                            <a href ="/product-add/add/delete/{{productDetail._id}}" onclick = "return confirm('Are you sure to delete this product?');"><i class ="fa fa-trash fa-lg" aria-hidden="true" ></i></a>
+                                        </td>
 										{{!--<span class="single-pro-star">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -125,17 +129,16 @@
 										<div class="single-pro-cn">
 											<h3>OVERVIEW</h3>
                                             {{!-- {{productDetail.detail}} --}}
+											<p>Type: {{productDetail.productType}}</p>
 											<p>Color: {{productDetail.color}}</p>
+											<p>Features: {{productDetail.features}}</p>
+											<p>Screen size: {{productDetail.screenSize}}</p>
+											<p>Stock: {{productDetail.stock}}</p>
                                             <p>Weight: {{productDetail.detail.itemWeight}}</p>
                                             <p>Model: {{productDetail.detail.modelName}}</p>
-                                            <p>Processor: {{productDetail.detail.processor}}</p>
-                                            <p>Graphics Card: {{productDetail.detail.graphicsCard}}</p>
+                                            
                                             <p>OS: {{productDetail.detail.os}}</p>
-                                            <p>Ram: {{productDetail.detail.ram}}</p>
-                                            <p>Storage: {{productDetail.detail.storage}}</p>
-                                            <p>Webcam: {{productDetail.detail.webcam}}</p>
-                                            <p>Battery: {{productDetail.detail.battery}}</p>
-                                            <p>Power Adapter: {{productDetail.detail.powerAdapter}}</p>
+                                          
                                             <p>Manufacturer: {{productDetail.detail.manufacturer}}</p>
                                             <p>Release Date: {{productDetail.detail.releaseDate}}</p>
 											{{!-- <p>{{productDetail.detail}}</p> --}}

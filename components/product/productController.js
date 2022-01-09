@@ -76,19 +76,12 @@ exports.list=async function(req,res){
     newProduct.color = req.body.color;
     newProduct.features = req.body.features;
     newProduct.description = req.body.description;
-    newProduct.refreshRate = req.body.refreshRate;
-    newProduct.description = req.body.description;
-    newProduct.detail.itemDimensions = req.body.itemDimensions;
+    
+    
     newProduct.detail.itemWeight = req.body.itemWeight;
     newProduct.detail.modelName = req.body.modelName;
     newProduct.detail.os =req.body.os;
-    newProduct.detail.processor = req.body.processor;
-    newProduct.detail.graphicsCard = req.body.graphicsCard;
-    newProduct.detail.ram = req.body.ram;
-    newProduct.detail.storage = req.body.storage;
-    newProduct.detail.webcam = req.body.webcam;
-    newProduct.detail.battery = req.body.battery;
-    newProduct.detail.powerAdapter = req.body.powerAdapter;
+   
     newProduct.detail.manufacturer = req.body.manufacturer;
     newProduct.detail.releaseDate = req.body.releaseDate;
 
@@ -248,17 +241,9 @@ exports.list=async function(req,res){
       images : pic,
       description : req.body.description,
       detail : {
-          itemDimensions : req.body.itemDimensions,
           itemWeight : req.body.itemWeight,
           modelName : req.body.modelName,
-          processor : req.body.processor,
-          graphicsCard : req.body.graphicsCard,
           os : req.body.os,
-          ram : req.body.ram,
-          storage : req.body.storage,
-          webcam : req.body.webcam,
-          battery : req.body.battery,
-          powerAdapter : req.body.powerAdapter,
           manufacturer :req.body.manufacturer,
           releaseDate : req.body.releaseDate,
       },
