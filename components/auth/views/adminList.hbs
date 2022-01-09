@@ -69,15 +69,15 @@
                                         
                                         
                                     {{else}}
-                                    <td><a href="/profile/{{_id}}">{{username}}</a></td>
+                                    <td><a href="/Profile/{{_id}}">{{username}}</a></td>
                                           <td>{{fullname}}</td>
                                           {{#if isLock}}
                                         <td>
-                                            <button class="ds-setting">Disable</button>
+                                            <a href ="/Profile/unlock/{{_id}}" class="ds-setting">Disable</a> 
                                         </td>
                                         {{else}}
                                          <td>
-                                            <button class="pd-setting">Active</button>
+                                            <a href ="/Profile/lock/{{_id}}" class="pd-setting">Active</a>
                                         </td>
                                         {{/if}}
                                       

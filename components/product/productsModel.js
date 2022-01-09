@@ -1,5 +1,10 @@
 const mongoose=require("mongoose")
 
+const commentSchema=mongoose.Schema({
+    content:String,
+    createAt: String,
+    username:String,
+});
 
 const productSchema=mongoose.Schema({
     productType : String,
@@ -27,17 +32,7 @@ const productSchema=mongoose.Schema({
     },
     buyCounts : Number,
     viewCounts : Number,
-    comment : {
-        total : Number,
-        items : [ 
-            {
-                name : String,
-                content : String,
-                date : String,
-                rate : Number,
-            }
-        ]
-    }
+    comment : [commentSchema]
 })
 
 const Product=mongoose.model('product',productSchema,'products')

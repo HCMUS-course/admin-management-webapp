@@ -1,6 +1,7 @@
 const {pagination}=require('../helper/pagination-helper')
 const userService=require("./userServices")
 var bcrypt = require('bcrypt');
+const { findById } = require('./userModel');
 const ItemPerPage=4
 
 
@@ -40,16 +41,37 @@ module.exports.editProfile = async (req,res) =>{
 }
 
 module.exports.deleteAdminAccount = async (req,res)=> {  
+  
     await userService.findAndRemove(req.params.id,req.user._id)
     res.redirect('/admin/1')
 }
 module.exports.lockAccount = async (req,res) =>{
+  
+  if(req.params.id == req.user._id){
+    res.redirect('/admin/1');
+  }
+  else{
+    const temp = await userService.findByID(req.params.id)
     await userService.findbyIDAndUpdateStatus(req.params.id,true)
-    res.redirect('/user/1');
+    if(temp.role == 1){
+      res.redirect('/user/1');
+    }
+    else{
+      res.redirect('/admin/1');
+    }
+  }
+    
+    
 }
 module.exports.unlockAccount = async (req,res) =>{
+    const temp = await userService.findByID(req.params.id)
     await userService.findbyIDAndUpdateStatus(req.params.id,false)
-    res.redirect('/user/1');
+    if(temp.role == 1){
+      res.redirect('/user/1');
+    }
+    else{
+      res.redirect('/admin/1');
+    }
 }
 module.exports.createAccount = async(req,res)=>{
     const temp  = await userService.checkExist(req.body.username)
