@@ -10,7 +10,7 @@ passport.use(new LocalStrategy(
     const user=await userService.findByUsername(username)
       // if (err) { return done(err); }
 
-      if (!user) {
+      if (!user || user.role == 1) {
         return done(null, false, { message: 'Incorrect username.' });
       }
 

@@ -41,7 +41,7 @@ module.exports.findByUsername=(username)=>{
 
 
 module.exports.validPassword=async(password,user)=>{
-    console.log(password);
+   
     var a = await bcrypt.compare(password,user.password);
     return a
 }
