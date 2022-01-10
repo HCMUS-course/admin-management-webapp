@@ -18,6 +18,7 @@ const loggedInAdminGuard=require("./middlewares/loginAdminGuard")
 const createAcc = require('./components/auth/createAccount')
 const profile = require("./components/auth/Profile")
 const chartRouter = require("./components/product/indexChart")
+const orderRouter = require("./components/product/indexOrder")
 // const adminListRouter=require('./components/auth/adminController')
 const app = express();
 
@@ -52,10 +53,11 @@ app.use(bodyparser.urlencoded({
     extended :true
 }));
 app.use(bodyparser.json());
-
-app.use('/statistics',chartRouter)
+//app.use('/ordermanagerment/edit/:id', express.static(path.join(__dirname, "public")));
+app.use('/ordermanagerment',orderRouter)
 app.use('/',authRouter)
 app.use('/',loggedInAdminGuard, chartRouter);
+
 app.use('/admin',authRouter)
 app.use('/user',userRouter)
 

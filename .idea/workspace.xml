@@ -49,6 +49,7 @@
       <option name="presentableId" value="Default" />
       <updated>1641128410105</updated>
       <workItem from="1641128412994" duration="532000" />
+      <workItem from="1641796921103" duration="596000" />
     </task>
     <servers />
   </component>
@@ -60,14 +61,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/product/orderController.js</url>
-          <line>181</line>
-          <properties lambdaOrdinal="-1" />
+          <line>188</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/product/orderController.js</url>
-          <line>190</line>
-          <properties lambdaOrdinal="-1" />
+          <line>197</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

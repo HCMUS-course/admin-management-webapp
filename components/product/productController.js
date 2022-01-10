@@ -85,8 +85,8 @@ exports.list=async function(req,res){
     newProduct.detail.manufacturer = req.body.manufacturer;
     newProduct.detail.releaseDate = req.body.releaseDate;
 
-    newProduct.buyCount = 0;
-    newProduct.viewCount = 0;
+    newProduct.buyCounts = 0;
+    newProduct.viewCounts = 0;
 
     newProduct.images.push(pic1.url);
     newProduct.images.push(pic2.url);

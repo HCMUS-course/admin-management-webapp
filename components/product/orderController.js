@@ -1,5 +1,6 @@
 const orderServices=require('./orderServices')
 const orderController=require('./orderController')
+const userServices = require('../auth/userServices')
 module.exports.chartByDate = async ()=>{
      const order = await orderServices.findAllOrder()
      const num = await orderServices.getNumberOfOrder()
@@ -185,7 +186,6 @@ module.exports.draw = async (res) =>{
     const byMonth = await orderController.chartByMonth()
     const byYear = await orderController.chartByYear()
     const top10 = await orderController.chartTop10()
-    console.log(top10)
    
   
     res.render('Chart',{
@@ -199,4 +199,38 @@ module.exports.draw = async (res) =>{
         ytop10 : top10[1]
         
     });
+}
+module.exports.viewListOrder = async (res) =>{
+    const order = await orderServices.findAllOrder()
+    var rs = []
+    
+    for(i = 0 ; i < order.length ;i++){
+        const user = await userServices.findByID(order[i].userId)
+        for (j = 0; j<order[i].items.length; j++){
+            var temp = 
+                {
+                    userid :order[i].userId,
+                    id : order[i].items[j].id,
+                    name : user.fullname,
+                    status : order[i].items[j].status,
+                    address : order[i].items[j].address,
+                    phoneNumber : order[i].items[j].phoneNumber,
+                    orderDate : order[i].items[j].orderDate,
+                    deliveryDate : order[i].items[j].deliveryDate
+                }
+
+            rs.push(temp)
+        }
+    }
+   
+     res.render('orderList',{
+        order : rs
+     })
+}
+module.exports.updateState = async (req,res) =>{
+
+    const temp = await orderServices.updateStatus(req.params.id)
+    console.log(temp)
+   
+     res.redirect('/ordermanagerment')
 }
