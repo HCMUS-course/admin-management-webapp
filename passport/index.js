@@ -9,11 +9,11 @@ passport.use(new LocalStrategy(
     // User.findOne({ username: username }, function (err, user) 
     const user=await userService.findByUsername(username)
       // if (err) { return done(err); }
-
-      if (!user || user.role == 1) {
+      console.log(user.isLock)
+      if (!user || user.role == 1 || user.isLock == true ) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-
+      
       const isValidAuth=await userService.validPassword(password,user)
       if (!isValidAuth) {
         return done(null, false, { message: 'Incorrect password.' });
