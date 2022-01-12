@@ -9,7 +9,7 @@ module.exports.chartByDate = async ()=>{
     
      for(let i = 0; i < num; i++){
         order[i].items.forEach(element => {
-            var tmp = element.orderDate.replaceAll('-','')
+            var tmp = element.orderDate.replace(/-/g,'')
             if(date.indexOf(tmp) == -1){
                 date.push(tmp)
                 sale.push(element.cart.totalPrice)
@@ -49,7 +49,7 @@ module.exports.chartByMonth = async ()=>{
    
     for(let i = 0; i < num; i++){
        order[i].items.forEach(element => {
-           var tmp = element.orderDate.replaceAll('-','')
+        var tmp = element.orderDate.replace(/-/g,'')
            tmp = tmp.substr(0,6)
            if(date.indexOf(tmp) == -1){
                date.push(tmp)
@@ -91,7 +91,7 @@ module.exports.chartByYear = async ()=>{
    
     for(let i = 0; i < num; i++){
        order[i].items.forEach(element => {
-           var tmp = element.orderDate.replaceAll('-','')
+        var tmp = element.orderDate.replace(/-/g,'')
            tmp = tmp.substr(0,4)
            if(date.indexOf(tmp) == -1){
                date.push(tmp)
