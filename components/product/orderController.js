@@ -206,6 +206,7 @@ module.exports.viewListOrder = async (res) =>{
     
     for(i = 0 ; i < order.length ;i++){
         const user = await userServices.findByID(order[i].userId)
+        if(user != null){
         for (j = 0; j<order[i].items.length; j++){
             var temp = 
                 {
@@ -221,6 +222,7 @@ module.exports.viewListOrder = async (res) =>{
 
             rs.push(temp)
         }
+    }
     }
    
      res.render('orderList',{
