@@ -9,7 +9,7 @@ passport.use(new LocalStrategy(
     // User.findOne({ username: username }, function (err, user) 
     const user=await userService.findByUsername(username)
       // if (err) { return done(err); }
-      console.log(user.isLock)
+     
       if (!user || user.role == 1 || user.isLock == true ) {
         return done(null, false, { message: 'Incorrect username.' });
       }
